@@ -21,7 +21,7 @@ def split_data_for_federated_learning(df, n_clients = 5):
     return client_data
 
 if __name__ == "__main__":
-    file_path = "data\data.csv"
+    file_path = "pixalate\data\data.csv"
     df = load_and_preprocess_data(file_path)
     client_data = split_data_for_federated_learning(df)
 
