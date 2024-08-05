@@ -1,7 +1,3 @@
 pixalate_venv/
-pixalate/data/data.csv
-pixalate/data/client_1_data.csv
-pixalate/data/client_2_data.csv
-pixalate/data/client_3_data.csv
-pixalate/data/client_4_data.csv
-pixalate/data/client_5_data.csv
+# to ignore all csv files
+pixalate/data/*.csv 
