@@ -6,7 +6,7 @@ from pixalate.federated_learning.fl_client import client_fn
 
 def main():
     # Load and preprocess data
-    df = load_and_preprocess_data("path_to_your_train_sample.csv")
+    df = load_and_preprocess_data("pixalate\data\data.csv")
     client_data = split_data_for_federated_learning(df, n_clients=5)
 
     # Define flower client
@@ -20,9 +20,7 @@ def main():
         client_manager=fl.server.SimpleClientManager(),
         strategy=fl.server.strategy.FedAvg(
             fraction_fit=1.0,
-            fraction_eval=1.0,
             min_fit_clients=5,
-            min_eval_clients=5,
             min_available_clients=5,
         ),
     )
