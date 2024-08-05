@@ -1,5 +1,4 @@
 from setuptools import setup, find_packages
-import os
 
 # Function to read the requirements.txt file
 def read_requirements():
