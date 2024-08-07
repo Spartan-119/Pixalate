@@ -12,7 +12,7 @@ class FraudDetectionClient(fl.client.NumPyClient):
         self.x_test = x_test
         self.y_test = y_test
         self.criterion = nn.BCELoss()
-        self.optimzer = optim.Adam(model.parameters())
+        self.optimizer = optim.Adam(model.parameters())
 
     def get_parameters(self):
         return get_model_parameters(self.model)
@@ -24,7 +24,7 @@ class FraudDetectionClient(fl.client.NumPyClient):
         )
         
         self.model.train()
-        for epoch in range(1):  # You can adjust the number of epochs
+        for epoch in range(1):  # mention the number of epochs here
             for batch_x, batch_y in train_loader:
                 self.optimizer.zero_grad()
                 outputs = self.model(batch_x)

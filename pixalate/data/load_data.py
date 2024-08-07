@@ -14,20 +14,20 @@ def load_and_preprocess_data(file_path):
     
     return df
 
-def split_data_for_federated_learning(df, n_clients = 5):
-    # split the dataset into n parts to simulate federated clients
-    client_data = np.array_split(df, n_clients)
+# def split_data_for_federated_learning(df, n_clients = 5):
+#     # split the dataset into n parts to simulate federated clients
+#     client_data = np.array_split(df, n_clients)
     
-    return client_data
+#     return client_data
 
-if __name__ == "__main__":
-    file_path = "pixalate\data\data.csv"
-    df = load_and_preprocess_data(file_path)
-    client_data = split_data_for_federated_learning(df)
+# if __name__ == "__main__":
+#     file_path = "pixalate\data\data.csv"
+#     df = load_and_preprocess_data(file_path)
+#     client_data = split_data_for_federated_learning(df)
 
-    print(f"Loaded and preprocessed {len(df)} records.")
-    print(f"Split data into {len(client_data)} parts for federated learning.")
+#     print(f"Loaded and preprocessed {len(df)} records.")
+#     print(f"Split data into {len(client_data)} parts for federated learning.")
 
-    for i, data in enumerate(client_data):
-        data.to_csv(f"data\client_{i+1}_data.csv", index=False)
-        print(f"Saved data for client {i+1} with {len(data)} records.")
+#     for i, data in enumerate(client_data):
+#         data.to_csv(f"data\client_{i+1}_data.csv", index=False)
+#         print(f"Saved data for client {i+1} with {len(data)} records.")
