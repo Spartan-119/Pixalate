@@ -10,6 +10,10 @@ The TalkingData AdTracking dataset was put up on Kaggle in 2017 as a competition
 
 ## Simulation Setup
 
+Note: As mentioned [here [1]:](https://flower.ai/docs/framework/example-pytorch-from-centralized-to-federated.html#federated-training)
+> "The concept is easy to understand. We have to start a server and then use the code in cifar.py for the clients that are connected to the server. The server sends model parameters to the clients. The clients run the training and update the parameters. The updated parameters are sent back to the server which averages all received parameter updates. This describes one round of the federated learning process and we repeat this for multiple rounds. [1]"  
+
+<br>
 In this simulation, there are 5 clients, each receiving an IID (Independent and Identically Distributed) dataset portion. This results in each client obtaining 16,000 datapoints (80,000 / 5).
 
 ### Client-Side Processing

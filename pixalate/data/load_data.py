@@ -5,6 +5,9 @@ import os
 import time
 from matplotlib import pyplot as plt
 import seaborn as sns
+from imblearn.over_sampling import SMOTE
+from sklearn.model_selection import train_test_split
+from collections import Counter
 
 # for the sake of simplicity i am giving in the configurations here, later might add to a separate conf/ in a YAML file
 # file_path = "pixalate\data\data.csv"
@@ -23,10 +26,30 @@ def load_and_preprocess_data(file_path):
     df['hour'] = df['click_time'].dt.hour
     df['day'] = df['click_time'].dt.day
 
-    # convert categorical variables to numeric
-    for col in ['ip', 'app', 'device', 'os', 'channel']:
-        df[col] = df[col].astype('category').cat.codes
-    
+    # converting date stamps to date/time type
+    df['click_time'] = pd.to_datetime(df['click_time'])
+    df['attributed_time'] = pd.to_datetime(df['attributed_time'])
+
+    # counting the number of classes where 1 implies a click and 0 not a click
+    count_0 = df[df['is_attributed'] == 0].shape[0]
+    count_1 = df[df['is_attributed'] == 1].shape[0]
+    print(f"Number of rows with 'is_attribute' == 0: {count_0}")
+    print(f"Number of rows with 'is_attribute' == 1: {count_1}")
+
+    # removing the featuers to accomodate SMOTE - i Know this is not ideal, but EDA is not the goal here
+    X = df.drop(['is_attributed', 'attributed_time', 'click_time'], axis=1)
+    y = df['is_attributed']
+
+    # splitting into 80:20 ratio
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # applying SMOTE
+    sm = SMOTE(random_state=42)
+    X_train_res, y_train_res = sm.fit_resample(X_train, y_train)
+
+    print('Original dataset shape:', Counter(y_train))
+    print('Resampled dataset shape:', Counter(y_train_res))
+
     return df
 
 # def split_data_for_federated_learning(df, n_clients = 5):
