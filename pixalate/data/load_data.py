@@ -1,8 +1,23 @@
 import pandas as pd
 import numpy as np
+import datetime
+import os
+import time
+from matplotlib import pyplot as plt
+import seaborn as sns
+
+# for the sake of simplicity i am giving in the configurations here, later might add to a separate conf/ in a YAML file
+# file_path = "pixalate\data\data.csv"
+    
 
 def load_and_preprocess_data(file_path):
     df = pd.read_csv(file_path, parse_dates = ['click_time'])
+
+    # the ip, app, device, os and channel are categorical variables encoded as integers.
+    # setting them as categorise for analysis
+    variables = ['ip', 'app', 'device', 'os', 'channel']
+    for variable in variables:
+        df[variable] = df[variable].astype('category')
 
     # extracting the day and the hour from the click_time column
     df['hour'] = df['click_time'].dt.hour
