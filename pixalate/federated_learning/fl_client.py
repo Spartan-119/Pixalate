@@ -4,7 +4,7 @@ from typing import *
 import numpy as np
 import torch
 
-import talking_data
+import pixalate.federated_learning.ad_tracking as ad_tracking
 import flwr as fl
 
 DEVICE: str = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
