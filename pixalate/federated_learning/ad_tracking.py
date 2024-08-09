@@ -110,7 +110,7 @@ def test(
 # loss, accuracy = test(model, testloader)
 
 def main():
-    print("Classical Machine Learning Training")
+    print("Starting Centralised Classical Machine Learning Training...")
     
     # Load data
     print("Loading data...")
