@@ -7,6 +7,11 @@ import torch
 from typing import Tuple, Dict
 from collections import Counter
 
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, log_loss
+
+
 file_path = "pixalate\data\data.csv"
 
 def load_data(file_path: str) -> Tuple[DataLoader, DataLoader, Dict]:
@@ -55,10 +60,6 @@ def load_data(file_path: str) -> Tuple[DataLoader, DataLoader, Dict]:
     num_examples = {"trainset": len(trainset), "testset": len(testset)}
 
     return trainloader, testloader, num_examples
-
-from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, log_loss
 
 def train(
     model,  # This will be a scikit-learn model
